@@ -21,6 +21,7 @@ public class RobotTemplate extends SimpleRobot {
     RobotDrive robotDrive = new RobotDrive(4,3,2,1);
     DoubleSolenoid climberPiston = new DoubleSolenoid(3,4);
     Relay compressorSpike = new Relay(1);
+    DigitalInput digitalCompressor = new DigitalInput(1);
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
@@ -33,6 +34,9 @@ public class RobotTemplate extends SimpleRobot {
      */
     public void operatorControl() {
         
+        
+        
+        
         robotDrive.setSafetyEnabled(true);
         while(isOperatorControl() && isEnabled()){
             robotDrive.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
@@ -44,6 +48,11 @@ public class RobotTemplate extends SimpleRobot {
             }
             if(rightJoystick.getRawButton(8)){
                 climberPiston.set(DoubleSolenoid.Value.kOff);
+            }
+            if(!digitalCompressor.get()){
+                compressorSpike.set(Relay.Value.kForward);
+            } else{
+                compressorSpike.set(Relay.Value.kOff);
             }
             Timer.delay(0.01);
         }
