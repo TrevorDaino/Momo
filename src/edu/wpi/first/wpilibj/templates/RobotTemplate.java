@@ -25,9 +25,12 @@ public class RobotTemplate extends SimpleRobot {
     DoubleSolenoid magazine = new DoubleSolenoid(1, 2);
     Relay compressorSpike = new Relay(1);
     DigitalInput digitalCompressor = new DigitalInput(1);
+    DigitalInput limitSwitchBack = new DigitalInput(10);
+    DigitalInput limitSwitchForward = new DigitalInput(9);
     Jaguar backMotor = new Jaguar(6);
     Jaguar frontMotor = new Jaguar(5);
     Relay hammer = new Relay(6);
+    
 
     /**
      * This function is called once each time the robot enters autonomous mode.
